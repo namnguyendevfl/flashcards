@@ -396,8 +396,8 @@ API Documentation details:
 
 ## Database Setup
 
-* Set up four new ElephantSQL database instances - development, test, preview, and production - by following the instruction in the "PostgreSQL: Creating & Deleting Databases" checkpoint.
-* After setting up your database instances, connect DBeaver to your new database instances by following the instruction in the "PostgreSQL: Installing DBeaver" checkpoint.
+1. Set up four new ElephantSQL database instances - development, test, preview, and production - by following the instruction in the "PostgreSQL: Creating & Deleting Databases" checkpoint.
+1. After setting up your database instances, connect DBeaver to your new database instances by following the instruction in the "PostgreSQL: Installing DBeaver" checkpoint.
 
 ## Installation
 
