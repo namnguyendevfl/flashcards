@@ -394,11 +394,20 @@ API Documentation details:
 
 ### Similar API structures for cards
 
-## Development Roadmap 
-This is v1.0 of the app, but future enhancements are expected to include:
-* Connection chanels - in order to share and learn flashcards from different users.
-* Add more specialized diets (dairy free)
-* Add screenshots of the app for explanatory purpose on the dashboard.
+## Database Setup
+
+* Set up four new ElephantSQL database instances - development, test, preview, and production - by following the instruction in the "PostgreSQL: Creating & Deleting Databases" checkpoint.
+* After setting up your database instances, connect DBeaver to your new database instances by following the instruction in the "PostgreSQL: Installing DBeaver" checkpoint.
+
+## Installation
+
+1. Fork and clone this respository.
+1. Run `cp ./env.sample .env`.
+1. Update `.env` file with the connection URL's and other keys.
+1. Run `npm install` to install project dependencies.
+1. Run `npm run dev` to start your app in development mode.
+
+If you have trouble getting the server to run, reach out for assistance.
 
 ## How to run it 
 Use command line to navigate into the project folder and run the following in terminal
