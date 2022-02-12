@@ -16,14 +16,17 @@ import LoginPassword from "./LoginPw";
 import { saveLoggedIn } from "helpers/client/logins/loggedIns.Slice";
 
 export default function LoginForm(){
+
+    const router = useRouter();
+    const popupSelected = useAppSelector(state => state.popup.selected);
+    const dispatch = useAppDispatch();
+
     const { login_title_text, user_name_text } = signupNLogin_En;
     const { invalid_username_err_text } = signupErrors_En;
 
     const { notFound_username_err_text, invalid_pw_text } = loginErrs_En;
     const [ popup, setPopup ] = useState<string | null>(null);
-    const popupSelected = useAppSelector(state => state.popup.selected);
-    const dispatch = useAppDispatch();
-    const router = useRouter();
+
     //create an ids array and clickedId variable using useStateRef to set window.focus() on a clicked element and window.unfocus() on other elements
     const ids = ['user_name_login', 'password_login'];
     const [ clickedId, setClickedId, clickedIdRef] = useState<string | undefined>();
@@ -90,6 +93,7 @@ export default function LoginForm(){
             return { message: invalid_pw_text};
         } else return null
     })()
+    
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
         const abortcontroller = new AbortController();

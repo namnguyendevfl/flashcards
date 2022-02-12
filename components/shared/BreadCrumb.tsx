@@ -11,11 +11,15 @@ interface BreadCrumbProps {
 }
 
 export default function BreadCrumb({deck, cards}: BreadCrumbProps) {
-    const dispatch = useAppDispatch()
-    const router = useRouter()
+
+    const dispatch = useAppDispatch();
+
+    const router = useRouter();
     const {query: { deckId, cardId }} = router;
     const url = router.asPath;
-    const [cardIdx, setCardIdx] = useState<any>(null)
+
+    const [cardIdx, setCardIdx] = useState<any>(null);
+
     useEffect(() => {
         dispatch(saveDeckSelected(deck));
         if (cards) {
@@ -25,12 +29,11 @@ export default function BreadCrumb({deck, cards}: BreadCrumbProps) {
     
     const subUrl = url.split('/');
     const breadcrumb = "breadcrumb h-44px d-flex align-items-center bg-gray-300 ps-3 my-3 w-100";
+
     const list = subUrl.map((aSubUrl,index) =>  {
         const breadcrumbItem = "breadcrumb-item oi oi-home";
         const activeBreadcrumbItem = "breadcrumb-item ";
         if (aSubUrl === "" && index === 0) {
-            // return <li className={breadcrumbItem} key = {index}>  <span className = "oi oi-home"/> Home </li>
-
             return <li className= {breadcrumbItem} key = {index}> 
             <Link href="/" > 
                 <a className="color-blue"> Home </a> 
@@ -70,6 +73,7 @@ export default function BreadCrumb({deck, cards}: BreadCrumbProps) {
         }
         return null
     });
+    
     return  <nav>
                 <ol className={breadcrumb}>{list}</ol>
             </nav>

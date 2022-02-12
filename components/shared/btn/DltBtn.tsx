@@ -19,12 +19,16 @@ export default function Dlt (props: DltBtnProps) {
         deckId, 
         option, 
     } = props;
-    const { recentLoggedInId } = useAppSelector(state => state.loggedIns)
+
+    const { recentLoggedInId } = useAppSelector(state => state.loggedIns);
     const dispatch = useAppDispatch();
+
     const router = useRouter();
     const { asPath } = router;
+
     const handleDelete = () => {
         const abortController = new AbortController();
+
         const cardDelete = () => {
             if (deckId && cardId) {
                 cardAPICalls._delete(recentLoggedInId, cardId, abortController.signal)
@@ -34,6 +38,7 @@ export default function Dlt (props: DltBtnProps) {
                 .catch();
             };
         };
+
         const deckDelete = () => {
             if (deckId) {
                 deckAPICalls._delete(recentLoggedInId, deckId, abortController.signal)
@@ -43,10 +48,12 @@ export default function Dlt (props: DltBtnProps) {
                 .catch();
             };
         };
+
         const cardMessage = `
             Delete this card?
                         
             You will not be able to recover it.`;
+
         const deckMessage = `
             Delete this deck?
                     
@@ -56,6 +63,7 @@ export default function Dlt (props: DltBtnProps) {
         const message = option === "deck" ? deckMessage : cardMessage;
         const destroy = option === "deck" ? deckDelete : cardDelete;
         const confirm = window.confirm(message);
+        
         if (confirm === false) router.push(`${asPath}`);
         else destroy();
         return () => abortController.abort();

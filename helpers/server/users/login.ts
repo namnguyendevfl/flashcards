@@ -1,10 +1,8 @@
-const jwt = require('jsonwebtoken');
 import { Request, Response, NextFunction } from 'express';
 import { dbToFrontConverter } from '../utils';
 const argon2 = require("argon2");
 import { service } from "./users.service";
 import getConfig from 'next/config';
-const { serverRuntimeConfig } = getConfig();
 
 const saveLogin = async (req: Request, res: Response, next: NextFunction) => {
     res.locals.userLogin = req.body.data;

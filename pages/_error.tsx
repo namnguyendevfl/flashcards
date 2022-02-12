@@ -13,7 +13,6 @@ interface InitialProps {
     err: any;
 }
 
-
 export default function Error({ statusCode, title }: ErrorProps) {
     return (
       <div className="error-container">

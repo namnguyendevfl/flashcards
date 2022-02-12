@@ -1,8 +1,7 @@
-import { selectFilteredCardIds } from "helpers/client/cards/cardsSlice";
-import { saveDeckSelected, selectDeckById } from "helpers/client/decks/decksSlice";
+import { selectDeckById } from "helpers/client/decks/decksSlice";
 import { Card } from "lib/global/types";
-import React, { useEffect } from "react";
-import { useAppDispatch, useAppSelector } from "redux/hooks";
+import React from "react";
+import { useAppSelector } from "redux/hooks";
 import { Btn, DltBtn } from "../shared/btn";
 
 interface DeckListItemsProp {
@@ -11,8 +10,10 @@ interface DeckListItemsProp {
 };
 
 export default function DeckListItems({id, cards}: DeckListItemsProp) {
+  
   const deck = useAppSelector<any>(state => selectDeckById(state, id));
   const { name, description } = deck;
+
   return (
       <div className = "border border-dark p-2 my-2">
         <div className ="row w-100">

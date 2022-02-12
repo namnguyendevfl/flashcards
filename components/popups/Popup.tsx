@@ -2,7 +2,6 @@ import { useAppSelector } from "redux/hooks";
 import { Centralize } from "./Centralize";
 import Linen from "./Linen";
 import { Signup } from "../accounts/Signup";
-import styles from "./popups.module.css";
 import RecoverPwPopup from "../accounts/ForgotPw";
 
 interface PopupProp {

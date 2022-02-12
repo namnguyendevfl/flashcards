@@ -6,8 +6,11 @@ interface ErrorProp {
 }
 
 export default function Error ({error}: ErrorProp) {
-    const { ExclamationCircleIcon } = AccountIcons
-    const errorStyle = " fs-sm color-red me-3 my-1"
+
+    const { ExclamationCircleIcon } = AccountIcons;
+
+    const errorStyle = " fs-sm color-red me-3 my-1";
+    
     return ( error &&
         <div className = "ms-3 d-flex" > 
             <div className = " me-2 my-1"

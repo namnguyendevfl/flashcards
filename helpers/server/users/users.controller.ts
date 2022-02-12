@@ -46,8 +46,6 @@ export const usersController = {
         [
         asyncErrorBoundary(hasData), asyncErrorBoundary(saveSignup), 
         asyncErrorBoundary(validateFields), 
-        // asyncErrorBoundary(validatePw),
-        // asyncErrorBoundary(signup_isUniquePhone), 
         asyncErrorBoundary(hashPw), 
         asyncErrorBoundary(generateKey), asyncErrorBoundary(post)],
 

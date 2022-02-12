@@ -1,7 +1,6 @@
 import { ReactLibIcons } from "@/components/shared/Icons";
 import { signupNLogin_En } from "lib/global/languages/english";
 import { User } from "lib/global/types";
-import styles from "./signup.module.css";
 
 interface BirthdayProps {
     user: User;
@@ -9,14 +8,14 @@ interface BirthdayProps {
 }
 
 export default function Birthday ({user, handleChange}: BirthdayProps) {
-    const { age_month_text, age_day_text, age_year_text } = signupNLogin_En
+    const { age_month_text, age_day_text, age_year_text } = signupNLogin_En;
     const now = new Date();
     const currentYear = now.getFullYear()
     const dayList = (month: number | undefined) => {
-        const months30 = ["4","6","9","11"]
+        const months30 = ["4","6","9","11"];
         const dayNum = (() => {
-            if (month !== undefined && months30.includes(`${month}`)) return 30
-            return 31
+            if (month !== undefined && months30.includes(`${month}`)) return 30;
+            return 31;
         })();
         const days = [];
         for (let i = 1; i<(dayNum + 1); i++) days.push(i);
@@ -31,9 +30,9 @@ export default function Birthday ({user, handleChange}: BirthdayProps) {
 
     // Input Styles
     const inputStyle = " h-40px border-radius-6px px-2";
-    const birthdayFieldStyle = " pe-1 position-relative z-index-7"
+    const birthdayFieldStyle = " pe-1 position-relative z-index-7";
     const birthday_selectStyle = " border-outline-none bg-none w-148px ps-2 text-start";
-    const select_chervon = "position-absolute top-6D5px r-5px z-index-N1"
+    const select_chervon = "position-absolute top-6D5px r-5px z-index-N1";
 
     return (
         <>

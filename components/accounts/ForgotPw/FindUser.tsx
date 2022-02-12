@@ -12,43 +12,46 @@ interface SearchProps {
 }
 
 export default function FindUser ({setPopupDisplayed, setUpdatedUser, setDuplicateUsers}: SearchProps) {
-    const { find_your_account_text, search_instruction_text, search_text } = recoverPw_En
-    const { notFound_username_err_text, empty_userName_err } = recoverPwErrors_En()
+    const { find_your_account_text, search_instruction_text, search_text } = recoverPw_En;
+    const { notFound_username_err_text, empty_userName_err } = recoverPwErrors_En();
+    const { user_name_text } = signupNLogin_En;
+
     const [ userName, setUserName ] = useState("");
-    const { user_name_text } = signupNLogin_En
-    const [ error, setError ] = useState<ErrorType | null>(null)
-    const handleChange = ({target: { value }}: React.ChangeEvent<HTMLInputElement>) => setUserName(() => value)
+    const [ error, setError ] = useState<ErrorType | null>(null);
+
+    const handleChange = ({target: { value }}: React.ChangeEvent<HTMLInputElement>) => setUserName(() => value);
     const handleSearch = () => {
-        const abortcontroller = new AbortController()
+        const abortcontroller = new AbortController();
         const userSearched = { userName: userName.trim(), step: "find user"};
         if (userSearched.userName === "") setError(() => ({message: "empty username err"}))
         else {
             recoverPwService.findUser(userSearched, abortcontroller.signal)
             .then(res => {
                 if (res.length || Array.isArray(res)) {
-                    setDuplicateUsers(() => res)
-                    setPopupDisplayed(() => "handle-duplicates")
+                    setDuplicateUsers(() => res);
+                    setPopupDisplayed(() => "handle-duplicates");
                 } else {
-                    setPopupDisplayed(() => "send-token")
-                    setUpdatedUser(() => res)
+                    setPopupDisplayed(() => "send-token");
+                    setUpdatedUser(() => res);
                 }
             })
             .catch(setError)
         } 
     }
 
-    const errorMessage = error && error.message
+    const errorMessage = error && error.message;
+
     const userNameErr = () => {
         switch(errorMessage) {
-            case "notfound username": return notFound_username_err_text
-            case "empty username err": return empty_userName_err
-            default: return null
+            case "notfound username": return notFound_username_err_text;
+            case "empty username err": return empty_userName_err;
+            default: return null;
         }
-    }
+    };
 
     //styles
     const inputStyle = " border-outline-none h-54px border-radius-6px px-2 ";
-    const errElementHeight = " h-155px my-3 "
+    const errElementHeight = " h-155px my-3 ";
 
     return (
         <>

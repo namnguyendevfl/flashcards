@@ -8,6 +8,7 @@ interface NotEnoughCardsProps {
 };
 
 export default function NotEnoughCards({deck, cards}: NotEnoughCardsProps) {
+    
     return <>
     <h3>Not enough cards.</h3>
     {cards.length > 1

@@ -10,18 +10,14 @@ import store from 'redux/store';
 import { loggedInService } from 'helpers/client/logins';
 import { fetchCards } from 'helpers/client/cards/cardsSlice';
 import { fetchDecks } from 'helpers/client/decks/decksSlice';
-// import "bootstrap/dist/css/bootstrap.css";
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   
   const router = useRouter();
-  const { query: { deckId }} = router;
-
   const [ error, setError ] = useState();
   const [ authorized, setAuthorized ] = useState(false);
   
   useEffect(() => {
-
     verifyUser(router.pathname);
     
     //deny access to the app b/f verify the user

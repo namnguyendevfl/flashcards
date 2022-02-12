@@ -2,8 +2,8 @@ import { savePopup } from "helpers/client/popups/popup.slice";
 import { GlobalIcons } from "lib/global/icons";
 import { signupNLogin_En } from "lib/global/languages/english";
 import { User } from "lib/global/types";
-import React, { useState, useEffect, FormEvent } from "react"
-import { useAppDispatch } from "redux/hooks"
+import React, { FormEvent } from "react";
+import { useAppDispatch } from "redux/hooks";
 import Error from "./Error"
 
 interface LoginPwProps {
@@ -16,19 +16,14 @@ interface LoginPwProps {
 
 interface LoginErrors {
     message: string;
-
 }
 
 export default function LoginPw ({user, handleChange, password_id, error, setUser}: LoginPwProps) {
-    const { login_title_text, password_text, guest_mode_text, forgot_pass_text } = signupNLogin_En
-    const { userName, password, guestMode } = user
-    const [ blankInputs, setBlankInputs ] = useState(true)
-    //dont let a user to submit when the username and password are empty
+    
+    const { login_title_text, password_text, guest_mode_text, forgot_pass_text } = signupNLogin_En;
+    const {  SquareIcon, SquareCheckedIcon } = GlobalIcons;
 
-    useEffect(() => {
-        if (userName !== "" && password !== "") setBlankInputs(() => false)
-        else setBlankInputs(() => true)
-    },[userName, password])
+    const { password } = user;
 
     const handleGuestMode = () => {
         setUser((prevUser: User) => ({
@@ -43,13 +38,12 @@ export default function LoginPw ({user, handleChange, password_id, error, setUse
         dispatch(savePopup("forgotPw"))
     }
     
-    const {  SquareIcon, SquareCheckedIcon } = GlobalIcons
     //styles
-    const inputStyles = ' border-outline-none h-40px border-radius-6px px-2 w-100'
-    const labelStyle = "txt-sm fw-7"
+    const inputStyles = ' border-outline-none h-40px border-radius-6px px-2 w-100';
+    const labelStyle = "txt-sm fw-7";
 
     //tabindex
-    const ignoreTab = -1
+    const ignoreTab = -1;
     return (
         <>
             <div className = "d-flex px-3 flex-column">

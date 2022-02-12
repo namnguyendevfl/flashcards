@@ -7,10 +7,13 @@ interface ErrorProps {
 }
 
 export default function Error ({error, message}: ErrorProps) {
-    const { ErrorIcon } = AccountIcons
+
+    const { ErrorIcon } = AccountIcons;
+
     //styles
     const elementStyle = " bg-red-orange color-red border-red p-2 d-flex align-items-center";
-    const errorIconStyle = "bg-orange mx-2 d-flex align-items-center justify-content-center"
+    const errorIconStyle = "bg-orange mx-2 d-flex align-items-center justify-content-center";
+    
     return (error &&
         <div className = {elementStyle} > 
             <div className = {errorIconStyle}> 

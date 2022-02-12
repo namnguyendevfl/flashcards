@@ -1,7 +1,7 @@
-import SubmitBtn from "@/components/shared/btn/AccBtn"
-import { GlobalIcons } from "lib/global/icons"
-import { User } from "lib/global/types"
-import { useState, MouseEvent } from "react"
+import SubmitBtn from "@/components/shared/btn/AccBtn";
+import { GlobalIcons } from "lib/global/icons";
+import { User } from "lib/global/types";
+import { useState, MouseEvent } from "react";
 
 interface DuplicatesProps {
     setPopupDisplayed: React.Dispatch<React.SetStateAction<any>>;
@@ -10,19 +10,20 @@ interface DuplicatesProps {
     duplicateUsers: User[];
 }
 
-
 export default function Duplicates ({setPopupDisplayed, setUpdatedUser, duplicateUsers }: DuplicatesProps) {
 
     const [ selectedCountryIdx, setSelectedCountryIdx ] = useState("");
     const handleSelectCountry = (e: MouseEvent<HTMLButtonElement>) => {
-        const target = e.target 
+        const target = e.target;
         //@ts-ignore
-        setSelectedCountryIdx(target.id)
+        setSelectedCountryIdx(target.id);
     }
-    const { CircleCheckIcon, CircleIcon } = GlobalIcons
+
+    const { CircleCheckIcon, CircleIcon } = GlobalIcons;
+    
     const renderedUser = duplicateUsers.map((user, idx) => {
-        const { country, id } = user
-        const btnStyles = " bg-none border-outline-none w-100 d-flex justify-content-between "
+        const { country, id } = user;
+        const btnStyles = " bg-none border-outline-none w-100 d-flex justify-content-between ";
         return ( country &&
             <li key = {id} className="mx-0 px-0 list-group-item border-outline-none">
                 <button id = {`${idx}`} className= {btnStyles} onClick = {handleSelectCountry}>
@@ -32,15 +33,17 @@ export default function Duplicates ({setPopupDisplayed, setUpdatedUser, duplicat
             </li>
         )
     })
-    const elementHeight = " h-256px"
 
     const handleContinue = (e: MouseEvent) => {
         e.preventDefault();
-        setUpdatedUser(() => duplicateUsers[Number(selectedCountryIdx)])
-        setPopupDisplayed(() => "send-token")
-    }
-    return (
-        <>
+        setUpdatedUser(() => duplicateUsers[Number(selectedCountryIdx)]);
+        setPopupDisplayed(() => "send-token");
+    };
+
+    //styles
+    const elementHeight = " h-256px";
+
+    return (<>
         <h5> <strong>Select the country associated with your number</strong></h5>
         <hr className="mb-0"></hr>
         <div className= {elementHeight}>
@@ -51,6 +54,6 @@ export default function Duplicates ({setPopupDisplayed, setUpdatedUser, duplicat
         <div className="my-4">
             <SubmitBtn  type = "submit" title = "Continue" handleClick={handleContinue}/>
         </div>
-        </>)
+    </>)
 }
 

@@ -8,6 +8,7 @@ interface SubmitBtnProp {
 };
 export default function SubmitBtn({disabled, type, title, handleClick}: SubmitBtnProp) {
     const ignoreTab = -1;
+    
     return <button 
         tabIndex = {ignoreTab} 
         type = {type}

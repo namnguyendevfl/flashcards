@@ -12,26 +12,31 @@ import { User } from "lib/global/types";
 import Duplicates from "./Duplicates";
 
 export default function RecoverPwPopup() {
-    const dispatch = useDispatch();
 
-    const ids = [ "user_name_recover", "password_recover", "enterCode_recover"];
+    const dispatch = useDispatch();
+    const { EscapeIcon, BackIcon } = GlobalIcons;
 
     const [ clickedId, setClickedId, clickedIdRef ] = useState<string | undefined>();
     const [ popupDisplayed, setPopupDisplayed ] = useState<string>("search");
-    const [ duplicateUsers, setDuplicateUsers ] = useState([])
+    const [ duplicateUsers, setDuplicateUsers ] = useState([]);
     const [ updatedUser, setUpdatedUser ] = useState<User | null>(null);
     const [ methodMasked, setMethodMasked ] = useState();
+
     const handleEscape = () => {
         setUpdatedUser(() => null);
         setDuplicateUsers(() => []);
         dispatch(remove(false));
     }
+
     const handleBackup = () => {
         setDuplicateUsers(() => []);
         setClickedId(() => "none");
-        setUpdatedUser(() => null)
+        setUpdatedUser(() => null);
         setPopupDisplayed(() => "search");
     }
+
+    const ids = [ "user_name_recover", "password_recover", "enterCode_recover"];
+
     const setIdFocus = (e : KeyboardEvent | MouseEvent) => {
         const target = e.target as Element;
         setClickedId(() => target.id);
@@ -54,17 +59,17 @@ export default function RecoverPwPopup() {
     const popupRendered = (() => {
         if (updatedUser != null) {
             switch (popupDisplayed) {
-                case "send-token": return <SendToken setPopupDisplayed = {setPopupDisplayed} updatedUser = {updatedUser} setMethodMasked = {setMethodMasked}/>
-                case "enter-code": return <EnterCode ids = {ids} clickedId = {clickedId} setPopupDisplayed = {setPopupDisplayed} updatedUser={updatedUser} methodMasked = {methodMasked}/>
-                case "create-newPw": return <NewPw ids = {ids} clickedId = {clickedId}  setUpdatedUser = {setUpdatedUser} updatedUser={updatedUser}/>
+                case "send-token": return <SendToken setPopupDisplayed = {setPopupDisplayed} updatedUser = {updatedUser} setMethodMasked = {setMethodMasked}/>;
+                case "enter-code": return <EnterCode ids = {ids} clickedId = {clickedId} setPopupDisplayed = {setPopupDisplayed} updatedUser={updatedUser} methodMasked = {methodMasked}/>;
+                case "create-newPw": return <NewPw ids = {ids} clickedId = {clickedId}  setUpdatedUser = {setUpdatedUser} updatedUser={updatedUser}/>;
             }
         } else if (duplicateUsers.length !== 0) {
-            return <Duplicates setUpdatedUser={setUpdatedUser} setPopupDisplayed = {setPopupDisplayed} duplicateUsers={duplicateUsers} setMethodMasked = {setMethodMasked}/>
+            return <Duplicates setUpdatedUser={setUpdatedUser} setPopupDisplayed = {setPopupDisplayed} duplicateUsers={duplicateUsers} setMethodMasked = {setMethodMasked}/>;
         }
-        return <FindUser setDuplicateUsers = {setDuplicateUsers} setUpdatedUser={setUpdatedUser} setPopupDisplayed = {setPopupDisplayed} />
+        return <FindUser setDuplicateUsers = {setDuplicateUsers} setUpdatedUser={setUpdatedUser} setPopupDisplayed = {setPopupDisplayed} />;
     })()
 
-    const { EscapeIcon, BackIcon } = GlobalIcons
+    
     return (<>
         <div className ="row mx-0 my-2 d-flex align-items-center justify-content-between">
             <div className = "col-2">

@@ -1,22 +1,14 @@
 import { fetchWrapper } from "helpers/client";
 import { Deck , Signal } from "lib/global/types";
-
 import getConfig from 'next/config';
 const { publicRuntimeConfig } = getConfig();
 
 const { NEXTJS_API_BASE_URL } = publicRuntimeConfig;
 
-function stripCards(deck: Deck) {
-  const { cards, ...deckWithoutCards } = deck;
-  return deckWithoutCards;
-}
-
 function stripId(deck: Deck) {
   const { id, ...deckWithoutId } = deck;
   return deckWithoutId;
 }
-
-// const API_BASE_URL = process.env.NEXTJS_API_BASE_URL;
 
 async function listDecks(userId: string, signal: Signal) {
     const url = `${NEXTJS_API_BASE_URL}/${userId}/decks`;
@@ -25,8 +17,7 @@ async function listDecks(userId: string, signal: Signal) {
   
 async function create(deck: Deck, signal: Signal) {
     const url = `${NEXTJS_API_BASE_URL}/${deck.userId}/decks/new`;
-    const body = stripCards(deck)
-    return await fetchWrapper.post(url, body, signal);
+    return await fetchWrapper.post(url, deck, signal);
   }
   
 async function update(updatedDeck: Deck, signal: Signal) {

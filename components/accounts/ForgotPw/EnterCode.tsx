@@ -15,23 +15,29 @@ interface EnterCodeProps {
 }
 
 export default function EnterCode ({setPopupDisplayed, updatedUser, methodMasked, ids, clickedId }: EnterCodeProps) {
-    const { enter_code_text, code_sent_text, code_expired_text, didt_get_code_text, continue_text } = recoverPw_En
-    const [ code, setCode ] = useState<string>("")
+
+    const [ code, setCode ] = useState<string>("");
+    const [ error, setError ] = useState<ErrorType | null>(null);
+
+    const { enter_code_text, code_sent_text, code_expired_text, didt_get_code_text, continue_text } = recoverPw_En;
+    const { isNaN_code_err, empty_code_err, code_length_err, wrong_code_err } = recoverPwErrors_En(code.length);
+    
     const { userName } = updatedUser;
-    const handleEnterCode = ({target: { value}}: React.ChangeEvent<HTMLInputElement>) => setCode(() => value)
-    const handleResendCode = () => setPopupDisplayed(() => "send-token")
-    const [ error, setError ] = useState<ErrorType | null>(null)
+
+    const handleEnterCode = ({target: { value}}: React.ChangeEvent<HTMLInputElement>) => setCode(() => value);
+    const handleResendCode = () => setPopupDisplayed(() => "send-token");
 
     useEffect(() => {
-        ids.forEach(id => (id !== clickedId) && elementFocused.unFocus(id))
-    }, [clickedId])
+        ids.forEach(id => (id !== clickedId) && elementFocused.unFocus(id));
+    }, [clickedId]);
+
     const handleValidate = () => {
         const abortcontroller = new AbortController();
         const user = {
             userName: userName,
             step: "verify token",
             token: code.trim()
-        }
+        };
         if (code === "") setError(() => ({message: "empty code err"}))
         //@ts-ignore: isNaN doesnt work in TS
         else if (isNaN(code)) setError(() => ({message: "isNaN code err"}))
@@ -39,20 +45,19 @@ export default function EnterCode ({setPopupDisplayed, updatedUser, methodMasked
         else {
             recoverPwService.verifyToken(user, abortcontroller.signal)
             .then(res => setPopupDisplayed(() => "create-newPw"))
-            .catch(setError)
+            .catch(setError);
         }
-
     }
     
-    const { isNaN_code_err, empty_code_err, code_length_err, wrong_code_err } = recoverPwErrors_En(code.length)
-    const errorMessage = error && error.message
+    const errorMessage = error && error.message;
+
     const passwordErr = () => {
         switch(errorMessage) {
-            case "empty code err": return empty_code_err
-            case "isNaN code err": return isNaN_code_err
-            case "code length err": return code_length_err
-            case "wrong code": return wrong_code_err 
-            default: return null
+            case "empty code err": return empty_code_err;
+            case "isNaN code err": return isNaN_code_err;
+            case "code length err": return code_length_err;
+            case "wrong code": return wrong_code_err;
+            default: return null;
         }
     }
 

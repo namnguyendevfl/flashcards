@@ -2,7 +2,6 @@ import { Request, Response, NextFunction } from 'express';
 import { service } from "./users.service";
 const validator = require("validator");
 import { isPossiblePhoneNumber } from 'libphonenumber-js';
-import { front2DbConverter } from '../utils';
 
 export {
     saveSignup,

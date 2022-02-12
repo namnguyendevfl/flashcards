@@ -1,6 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
 import { DbUser } from 'lib/global/types';
-import { dbToFrontConverter } from '../utils';
 import { service } from './users.service';
 const speakeasy = require("speakeasy");
 const nodemailer = require("nodemailer");
@@ -153,18 +152,13 @@ const sendTokenViaPhone = (req: Request, res: Response , next: NextFunction) => 
     const userNumber = "+" + dial_code + phone_number;
     if (step === "send token") {
         if (method === "phone") {
-            const accountSid = process.env.TWILIO_ACCOUNT_SID;
-            const authToken = process.env.TWILIO_AUTH_TOKEN;
-            const appNumber = process.env.APP_NUMBER;
-
-            const { TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN  } = serverRuntimeConfig.env
-            const client = require('twilio')(accountSid, authToken);
-            res.json({data: accountSid})
+            const { TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN, APP_NUMBER } = serverRuntimeConfig.env
+            const client = require('twilio')(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN);
 
             client.messages
             .create({
                 body: `Your verification code is ${token}`,
-                from: appNumber,
+                from: APP_NUMBER,
                 to: userNumber
             })
             .then((message: string) => {

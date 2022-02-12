@@ -21,11 +21,10 @@ interface Options {
 async function fetchJson (url: string, options: Options) {
     try {
         const response = await fetch(url, options);
-        console.log(response)
 
         if (response.status === 204) return null;
         const payload = await response.json();
-        console.log(payload)
+        
         if (payload.error) {
             const { error } = payload;
             return Promise.reject(error);

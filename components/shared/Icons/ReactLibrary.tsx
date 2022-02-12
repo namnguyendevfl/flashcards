@@ -7,7 +7,9 @@ interface IconProp {
 };
 
 export default function ReactLibIcons ({type}: IconProp) {
+
   const ignoreTab = -1;
+  
   switch(type) {
     case "trash": 
       return <IconContext.Provider value={{ color: "white", className: "trash" }}>

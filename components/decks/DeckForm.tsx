@@ -62,44 +62,44 @@ export default function DeckForm({ editedDeck, option}: DeckFormProps) {
         return () => abortController.abort();
       };
 
-return <form onSubmit={handleSubmit}>
-<div className = "w-100">
-    <div className = "pb-0">
-        <label htmlFor="name" className ="w-100" >
-        <div className="pb-2">Name </div>
-        <input 
-            id = "name"
-            type = "text"
-            name = "name"
-            className ="w-100 form-control" 
-            style = {{height:"40px"}}
-            placeholder ="Deck Name"
-            onChange = {handleChange}
-            value = {deck.name}
-            />
-        </label>
-    </div>
-    <div className = "py-0">
-        <label htmlFor="Description" className ="w-100">
-        <div className="pb-2 pt-3">Description</div>
-        <textarea
-            id = "Description"
-            // type = "text"
-            name = "description"
-            className ="w-100 form-control" 
-            style = {{height:"100px"}}
-            placeholder ="Brief description of the deck"
-            onChange = {handleChange}
-            value = {deck.description}
-            />
-        </label>
-    </div>
-</div>
-<div className= "py-2">
-    <button type = "submit"
-            className ="btn btn-primary">
-            Save
-    </button>
-</div>
-</form>
+    return <form onSubmit={handleSubmit}>
+        <div className = "w-100">
+            <div className = "pb-0">
+                <label htmlFor="name" className ="w-100" >
+                <div className="pb-2">Name </div>
+                <input 
+                    id = "name"
+                    type = "text"
+                    name = "name"
+                    className ="w-100 form-control" 
+                    style = {{height:"40px"}}
+                    placeholder ="Deck Name"
+                    onChange = {handleChange}
+                    value = {deck.name}
+                    />
+                </label>
+            </div>
+            <div className = "py-0">
+                <label htmlFor="Description" className ="w-100">
+                <div className="pb-2 pt-3">Description</div>
+                <textarea
+                    id = "Description"
+                    // type = "text"
+                    name = "description"
+                    className ="w-100 form-control" 
+                    style = {{height:"100px"}}
+                    placeholder ="Brief description of the deck"
+                    onChange = {handleChange}
+                    value = {deck.description}
+                    />
+                </label>
+            </div>
+        </div>
+        <div className= "py-2">
+            <button type = "submit"
+                    className ="btn btn-primary">
+                    Save
+            </button>
+        </div>
+    </form>
 }

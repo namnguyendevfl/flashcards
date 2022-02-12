@@ -13,6 +13,7 @@ export default function Error ({error, type}: ErrorProp) {
     })() 
 
     const style = position + " w-96 name-first-last d-flex align-items-center border-radius-6px";
+    
     return (
         <div className = {style} >
             <div className = "d-flex align-items-center"> 

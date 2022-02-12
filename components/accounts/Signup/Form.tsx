@@ -23,10 +23,12 @@ interface ErrorType {
 
 export default function Form(){
 
+    //icons
+    const { EscapeIcon } = GlobalIcons;
+
     const {
         signup_title_text, first_name_text, last_name_text, user_name_email_text, user_name_phone_text,
-        password_text, birthday_text, birthday_policy_text, age_text, signup_text, use_DOB_text, use_age_text,
-        birthday_Age_text, birthday_DOB_text, use_phone_text
+        password_text,signup_text, use_DOB_text, use_age_text, birthday_Age_text, birthday_DOB_text, 
     } = signupNLogin_En;
     
     const { birthday_err_text, password_err_text, invalid_username_err_text, first_last_name_err_text, 
@@ -158,7 +160,6 @@ export default function Form(){
         setClickedId(() => null);
         setUser((prevUser: User) => ({
             ...prevUser,
-            // userName: "",
             dialCode: "",
             phoneNumber: "",
             email: "",
@@ -225,9 +226,6 @@ export default function Form(){
     const name_element = "d-flex pb-2 justify-content-between w-100";
     const first_last_name = "w-221d5px";
     const end_tabkeyStyle = " w-0 h-6px color-white border-outline-none bg-none m-0 p-0";
-
-    //icons
-    const { EscapeIcon } = GlobalIcons;
 
     return (
         <>

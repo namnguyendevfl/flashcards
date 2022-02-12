@@ -13,23 +13,27 @@ interface HomeProps {
 }
 
 export default function Home({setAuthorized}: HomeProps) {
+
+  const router = useRouter()
+
   const deckIds = useAppSelector(selectDecksIds);
   const cardsAll = useAppSelector(selectCards);
+
   const renderedDecksList = deckIds.map(deckId => {
     const cardsByDeckId = cardsAll.filter((card: Card) => card.deckId === deckId);
     return (
-      <li key = {deckId} className='list-group-item m-0 p-0'>
+      <li key = {deckId} className='list-group-item m-0 p-0 border-outline-none'>
         <DeckListItem  id = {deckId} cards = {cardsByDeckId}/>
       </li>
     )
   });
   
-  const router = useRouter()
   const handleLogOut = () => {
     localStorage.setItem('loggedIn', JSON.stringify(null))
     setAuthorized(() => false)
     router.push("/accounts/login")
   }
+  
   return (
     <div className={styles.container  + ""}>
       <main className='w-100'>

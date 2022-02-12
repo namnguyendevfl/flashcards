@@ -1,4 +1,4 @@
-import { Card, Deck } from "./types";
+import { Card, Deck } from "../../../lib/global/types";
 
 export const routeUrls = {
     deckCreate: '/deck/new',

@@ -11,9 +11,9 @@ interface PhoneUserInputProps {
 }
 
 export default function PhoneUserInput ({setUser, handleUserName}: PhoneUserInputProps) {
+    
     const { use_email_text } = signupNLogin_En;
-    const phoneContainer = "bg-gray-200 intl-tel-input box-shadow-none border-outline-none h-40px border-radius-6px p-0 w-100";
-    const phoneInput = "form-control box-shadow-none bg-gray-200 w-100 h-40px";
+
     const handlePhoneChange = (isValid: boolean, value: string, selectedCountryData: CountryData, fullNumber: string, extension: string,) => {
         setUser((prevUser: User) => ({
             ...prevUser,
@@ -54,6 +54,10 @@ export default function PhoneUserInput ({setUser, handleUserName}: PhoneUserInpu
         }));
     };
     
+    //Styles
+    const phoneContainer = "bg-gray-200 intl-tel-input box-shadow-none border-outline-none h-40px border-radius-6px p-0 w-100";
+    const phoneInput = "form-control box-shadow-none bg-gray-200 w-100 h-40px";
+
     return <div id = "phone" >
         <IntlTelInput
             containerClassName={phoneContainer}

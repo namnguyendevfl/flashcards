@@ -1,15 +1,9 @@
 import { fetchWrapper } from "helpers/client";
 import { Card, Signal } from "lib/global/types";
-
 import getConfig from 'next/config';
 const { publicRuntimeConfig } = getConfig();
 
 const { NEXTJS_API_BASE_URL } = publicRuntimeConfig;
-
-function stripId(card:Card) {
-  const { id, ...cardWithoutId } = card;
-  return cardWithoutId;
-}
 
 async function listCards(userId: string, signal: Signal) {
     const url = `${NEXTJS_API_BASE_URL}/${userId}/cards`;
@@ -23,8 +17,7 @@ async function create(card: Card, signal: Signal) {
   
 async function update(updatedCard: Card, signal: Signal) {
     const url = `${NEXTJS_API_BASE_URL}/${updatedCard.userId}/cards/${updatedCard.id}/edit`;
-    const body = stripId(updatedCard);
-    return await fetchWrapper.put(url, body, signal);
+    return await fetchWrapper.put(url, updatedCard, signal);
   }
   
 async function _delete(userId: string, cardId: string, signal: Signal) {

@@ -1,12 +1,12 @@
-import SubmitBtn from "@/components/shared/btn/AccBtn"
-import { remove } from "helpers/client/popups/popup.slice"
-import { recoverPwService } from "helpers/client/recoverPw"
-import { GlobalIcons } from "lib/global/icons"
-import { recoverPw_En } from "lib/global/languages/english"
-import { elementFocused } from "lib/global/styles"
-import { User } from "lib/global/types"
-import React, { useEffect, useState } from "react"
-import { useAppDispatch } from "redux/hooks"
+import SubmitBtn from "@/components/shared/btn/AccBtn";
+import { remove } from "helpers/client/popups/popup.slice";
+import { recoverPwService } from "helpers/client/recoverPw";
+import { GlobalIcons } from "lib/global/icons";
+import { recoverPw_En } from "lib/global/languages/english";
+import { elementFocused } from "lib/global/styles";
+import { User } from "lib/global/types";
+import React, { useEffect, useState } from "react";
+import { useAppDispatch } from "redux/hooks";
 
 interface NewPwProps {
     updatedUser: User;
@@ -16,30 +16,33 @@ interface NewPwProps {
 }
 
 export default function NewPw ({updatedUser, setUpdatedUser, ids, clickedId}: NewPwProps) {
+
+    const dispatch = useAppDispatch();
     
+    const { create_newPw_text, please_chosePw_text, guest_mode_text, log_in_text } = recoverPw_En;
+    const { SquareIcon, SquareCheckedIcon } = GlobalIcons;
+
     useEffect(() => {
-        ids.forEach(id => (id !== clickedId) && elementFocused.unFocus(id))
+        ids.forEach(id => (id !== clickedId) && elementFocused.unFocus(id));
     }, [clickedId])
 
-    const { create_newPw_text, please_chosePw_text, guest_mode_text, log_in_text } = recoverPw_En
-    const { SquareIcon, SquareCheckedIcon } = GlobalIcons
-    const { userName } = updatedUser
-    const [ newPw, setNewPw ] = useState<string>("")
-    const [ guestMode, setGuestMode ] = useState(true)
-    const handleGuestMode = () => setGuestMode(() => !guestMode)
-    const handleChangePw = ({target: {value}}: React.ChangeEvent<HTMLInputElement>) => setNewPw(() => value)
-    const [ error, setError ] = useState()
-    const dispatch = useAppDispatch()
+    const { userName } = updatedUser;
+    const [ newPw, setNewPw ] = useState<string>("");
+    const [ guestMode, setGuestMode ] = useState(true);
+    const [ error, setError ] = useState();
+
+    const handleGuestMode = () => setGuestMode(() => !guestMode);
+    const handleChangePw = ({target: {value}}: React.ChangeEvent<HTMLInputElement>) => setNewPw(() => value);
     const handleUpdatePw = () => {
-        const abortcontroller = new AbortController()
+        const abortcontroller = new AbortController();
         const userUpdating = {
             userName: userName,
             password: newPw
-        }
+        };
         recoverPwService.updatePw(userUpdating, abortcontroller.signal)
         .then(res => {
-            dispatch(remove(false))
-            setUpdatedUser(() => res)
+            dispatch(remove(false));
+            setUpdatedUser(() => res);
         })
         .catch(setError)    
     }

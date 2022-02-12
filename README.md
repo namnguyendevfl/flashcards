@@ -396,7 +396,7 @@ API Documentation details:
 
 ## Development Roadmap 
 This is v1.0 of the app, but future enhancements are expected to include:
-* Weekly calendar - in order to map recipes based on the calendar.
+* Connection chanels - in order to share and learn flashcards from different users.
 * Add more specialized diets (dairy free)
 * Add screenshots of the app for explanatory purpose on the dashboard.
 

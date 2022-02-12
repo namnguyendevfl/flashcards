@@ -7,7 +7,7 @@ export interface Card {
     createdAt?: string;
     updatedAt?: string;
     userId:string;
-  };
+};
   
 export interface Deck {
   id?: string,
@@ -41,14 +41,6 @@ export interface User {
   email?: string | undefined;
 };
 
-interface UserDB {
-  age: number;
-  first_name: string;
-  last_name: string;
-  user_name: string;
-  
-}
-
 export interface DbUser {
   user_id?: number,
   first_name?: string,
@@ -71,7 +63,5 @@ interface ErrorType {
   firstName?: string;
   lastName?: string;
 };
-
-export type DeckId = number;
 
 export type Signal = any;

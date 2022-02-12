@@ -1,7 +1,7 @@
 import React from "react";
 import Link from 'next/link';
 import { Deck, Card } from "lib/global/types";
-import { btnUrls } from "lib/global/btnUrls";
+import { btnUrls } from "@/components/shared/btn/btnUrls";
 
 interface BtnProps {
     deck?: Deck;
@@ -10,8 +10,10 @@ interface BtnProps {
 };
 
 const Btn = ({deck, option, card}: BtnProps) => {
+
     const BASE_URL = btnUrls(deck, card);
     //set up the btn style and url for different btn functions
+    
     const state  = (() => {
         switch (option) {
             case "create-deck": return {

@@ -1,5 +1,5 @@
 import { NotEnoughCards } from "@/components/decks";
-import BreadCrumb from "@/components/shared/BreadCrumb/BreadCrumb";
+import BreadCrumb from "@/components/shared/BreadCrumb";
 import { selectCards, selectFilteredCards } from "helpers/client/cards/cardsSlice";
 import { saveDeckSelected, selectDeckById } from "helpers/client/decks/decksSlice";
 import { useRouter } from "next/router";
@@ -7,19 +7,23 @@ import React, { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "redux/hooks";
 
 export default function StudyDeck() {
-    // redux
-    const dispatch = useAppDispatch();
+
     const router = useRouter();
     const { query: { deckId }} = router;
+
+    const dispatch = useAppDispatch();
     const deck = useAppSelector<any>(state => selectDeckById(state, Number(deckId)));
+    const cards = useAppSelector<any>(state => selectFilteredCards(state));
+
     useEffect(() => {
         dispatch(saveDeckSelected(deck));
       },[deckId]);
-    const cards = useAppSelector<any>(state => selectFilteredCards(state))
     const name = deck && deck.name;
-    //react
+
     const [nextBtnVisible, setNextBtnVisible] = useState(false);
     const [cardIdx, setCardIdx] = useState(1);
+    const [front, setFront] = useState(true);
+
     const handleCarNum = () => {
         setNextBtnVisible(() => false);
         setCardIdx(() => cardIdx+1);
@@ -39,11 +43,12 @@ export default function StudyDeck() {
             };
         };
     };
-    const [front, setFront] = useState(true);
+    
     const handleFlip = () => {
         setFront(() => !front);
         setNextBtnVisible(() => true);
     }
+    
     return (cards 
     ? <div >
         <BreadCrumb deck = {deck}/>

@@ -1,5 +1,5 @@
 import { selectCardById } from "helpers/client/cards/cardsSlice";
-import { Card, Deck } from "lib/global/types";
+import { Deck } from "lib/global/types";
 import React from "react";
 import { useAppSelector } from "redux/hooks";
 import { Btn, DltBtn } from "../shared/btn";
@@ -10,8 +10,10 @@ interface CardListItemProp {
 };
 
 export default function CardListItem({ id, deck }: CardListItemProp) {
+
   const card = useAppSelector<any>(state => selectCardById(state, id))
   const { front, back, deckId } = card;
+  
     return <>
         <div className = "card container">
           <div className ="row w-100">

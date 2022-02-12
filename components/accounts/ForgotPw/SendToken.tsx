@@ -1,9 +1,9 @@
-import SubmitBtn from "@/components/shared/btn/AccBtn"
-import { maskUserName, recoverPwService } from "helpers/client/recoverPw"
-import { GlobalIcons } from "lib/global/icons"
-import { recoverPw_En } from "lib/global/languages/english"
-import { User } from "lib/global/types"
-import { useState } from "react"
+import SubmitBtn from "@/components/shared/btn/AccBtn";
+import { maskUserName, recoverPwService } from "helpers/client/recoverPw";
+import { GlobalIcons } from "lib/global/icons";
+import { recoverPw_En } from "lib/global/languages/english";
+import { User } from "lib/global/types";
+import { useState } from "react";
 
 interface SendTokenProps {
     setPopupDisplayed: React.Dispatch<React.SetStateAction<any>>;
@@ -15,32 +15,38 @@ interface MaskedsTypes {
     emailMasked: string | undefined;
     phoneMasked: string | undefined;
 }
+
 export default function SendToken ({setPopupDisplayed, updatedUser, setMethodMasked}: SendTokenProps) {
-    const { how_to_get_code_text, via_email_text, via_phone_text, no_access_to_get_code, continue_text } = recoverPw_En
-    const { phoneNumber, email, userName } = updatedUser
+    const { how_to_get_code_text, via_email_text, via_phone_text, continue_text } = recoverPw_En;
+    const { phoneNumber, email, userName } = updatedUser;
 
     const { emailMasked, phoneMasked }: MaskedsTypes | undefined = (() => {
-        if (phoneNumber || email) return maskUserName(phoneNumber, email)
-        else return {emailMasked: undefined, phoneMasked: undefined}
-    })()
-    const { CircleCheckIcon, CircleIcon } = GlobalIcons
-    const [ method, setMethod ] = useState<string>()
+        if (phoneNumber || email) return maskUserName(phoneNumber, email);
+        else return {emailMasked: undefined, phoneMasked: undefined};
+    })();
+
+    const { CircleCheckIcon, CircleIcon } = GlobalIcons;
+
+    const [ method, setMethod ] = useState<string>();
+    const [ error, setError ] = useState();
+
     const handleChoseEmail = () => {
-        setMethod(() => email)
-        setMethodMasked(() => emailMasked)
+        setMethod(() => email);
+        setMethodMasked(() => emailMasked);
     }
+
     const handleChosePhone = () => {
-        setMethod(() => phoneNumber)
-        setMethodMasked(() => phoneMasked)
+        setMethod(() => phoneNumber);
+        setMethodMasked(() => phoneMasked);
     }
-    const [ error, setError ] = useState()
+
     const handleSendToken = () => {
-        const abortController = new AbortController()
+        const abortController = new AbortController();
         const user = {
             userName: userName,
             step: "send token",
             method: (method === email) ? "email" : "phone"
-        }
+        };
         recoverPwService.sendToken(user,abortController.signal)
         .then(res => setPopupDisplayed(() => "enter-code"))
         .catch(setError)
