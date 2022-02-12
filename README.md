@@ -10,13 +10,12 @@ You can access a working prototype of the Nextjs app here: https://flashcards-om
 * [Front-end Route Structure](#Front-end-Route-Structure)
 * [Back-end Structure](#Back-end-Structure)
 * [API documentation](#API-Documentation)
-* [Usage](#usage)
-* [Project Status](#project-status)
-* [Room for Improvement](#room-for-improvement)
-* [Acknowledgements](#acknowledgements)
+* [Room for Improvement](#Room-For-Improvement)
+* [Database Setup](#Database-Setup)
+* [Installation](#Installation)
+* [Acknowledgements](#Acknowledgements)
 * [Contact](#contact)
 <!-- * [License](#license) -->
-
 
 ## User Stories 
 
@@ -394,6 +393,11 @@ API Documentation details:
 
 ### Similar API structures for cards
 
+## Room For Improvement
+This is v1.0 of the app, but future enhancements are expected to include:
+1. Connections - in order to share and learn from other users.
+2. Add a landing page to describe the app
+
 ## Database Setup
 
 1. Set up four new ElephantSQL database instances - development, test, preview, and production - by following the instruction in the "PostgreSQL: Creating & Deleting Databases" checkpoint.
@@ -409,30 +413,13 @@ API Documentation details:
 
 If you have trouble getting the server to run, reach out for assistance.
 
-## How to run it 
-Use command line to navigate into the project folder and run the following in terminal
 
-Local React scripts
+## Acknowledgements
 
-To install the react project ===> npm install
-To run react (on port 3000) ===> npm start
-To run tests ===> npm run test
+- This project was inspired by Thinkful flashcards capstone.
+- This project was based on [JWT Authentication Tutorial with Example App](https://jasonwatmore.com/post/2021/08/04/next-js-11-jwt-authentication-tutorial-with-example-app) and [Redux fundementals tutorial](https://redux.js.org/tutorials/fundamentals/part-1-overview).
+- Many thanks to Thinkful, Marius Banea, Jason Watmore, and Redux.
 
-Local Node scripts
+## Contact
+Created by [Nam Nguyen](https://www.flynerd.pl/) - feel free to contact me!
 
-To install the node project ===> npm install
-To migrate the database ===> npm run migrate -- 1
-To run Node server (on port 8000) ===> npm run dev
-To run tests ===> npm run test
-
-
-### Local Node scripts
-* To install the node project ===> npm install
-* To migrate the database ===> npm run migrate -- 1
-* To run Node server (on port 8000) ===> npm run dev
-* To run tests ===> npm run test
-
-### Local React scripts
-* To install the react project ===> npm install
-* To run react (on port 3000) ===> npm start
-* To run tests ===> npm run test
