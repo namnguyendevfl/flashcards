@@ -396,7 +396,8 @@ API Documentation details:
 ## Room For Improvement
 This is v1.0 of the app, but future enhancements are expected to include:
 1. Connections - in order to share and learn from other users.
-2. Add a landing page to describe the app
+2. Add a landing page to describe the app.
+2. Add instructions for each field of the signup popup so users will not be confused.
 
 ## Database Setup
 
