@@ -417,7 +417,7 @@ If you have trouble getting the server to run, reach out for assistance.
 ## Acknowledgements
 
 - This project was inspired by Thinkful flashcards capstone.
-- This project was based on [JWT Authentication Tutorial with Example App](https://jasonwatmore.com/post/2021/08/04/next-js-11-jwt-authentication-tutorial-with-example-app) and [Redux fundementals tutorial](https://redux.js.org/tutorials/fundamentals/part-1-overview).
+- This project was based on [JWT Authentication Tutorial with Example App](https://jasonwatmore.com/post/2021/08/04/next-js-11-jwt-authentication-tutorial-with-example-app) and [Redux fundementals tutorial](https://redux.js.org/tutorials/fundamentals/part-8-modern-redux).
 - Many thanks to Thinkful, Marius Banea, Jason Watmore, Redux, and StackOverFlow.
 
 ## Contact
